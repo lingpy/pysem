@@ -1,10 +1,10 @@
 """
 Sense manipulations following the framework of the STARLING package.
 """
-import networkx as nx
+#import networkx as nx
 from pysen.data import SENSE
 from collections import defaultdict
-from tabulate import tabulate
+
 
 class Sense(object):
 
@@ -12,13 +12,21 @@ class Sense(object):
         """
         Creates a sense graph upon initialization.
         """
-        G = nx.Graph()
+        G = {key: set() for key in SENSE}
         for key, values in SENSE.items():
-            G.add_node(key, type=1)
             for value in values:
-                if not 'sense-'+value in G:
-                    G.add_node('sense-'+value, type=2)
-                G.add_edge(key, 'sense-'+value)
+                val = 'sense-'+value
+                if not val in G:
+                    G[val] = set()
+                G[key].add(val)
+                G[val].add(key)
+        #G = nx.Graph()
+        #for key, values in SENSE.items():
+        #    G.add_node(key, type=1)
+        #    for value in values:
+        #        if not 'sense-'+value in G:
+        #            G.add_node('sense-'+value, type=2)
+        #        G.add_edge(key, 'sense-'+value)
                 
         # make a fuzzy lookup
         L = defaultdict(list)
@@ -51,6 +59,9 @@ class Sense(object):
         return out
 
     def similar(self, word, threshold=2, maxitems=5):
+        """
+        Search for similar items in the dataset.
+        """
         out = []
         for key in self.L[word]:
             neighbors = defaultdict(list)

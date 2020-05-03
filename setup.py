@@ -27,7 +27,7 @@ setup(
     platforms='any',
     python_requires='>=3.5',
     install_requires=[
-        'clldutils>=3.5', 'tabulate', 'networkx'
+        'clldutils>=3.5'
     ],
     extras_require={
         'dev': ['flake8', 'wheel', 'twine'],
