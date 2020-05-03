@@ -1,2 +1,3 @@
-# pysen
-Python library for handling semantic data in linguistics
+# PySen: Pysen library for handling semantic data in linguistics
+ 
+
