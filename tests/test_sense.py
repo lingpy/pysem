@@ -5,9 +5,9 @@ def test_sense():
     
     sense = Sense()
     assert len(
-            [node for node in sense.G if not node.startswith('sense-')]) == 7093
+            [node for node in sense.G if not node.startswith('s:')]) == 7048
     assert len(
-            [node for node in sense.G if node.startswith('sense-')]) == 427
+            [node for node in sense.G if node.startswith('s:')]) == 424
 
     assert len(sense.sense('arm')[0][1].split(';')) == 3
 

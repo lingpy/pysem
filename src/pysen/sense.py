@@ -15,20 +15,11 @@ class Sense(object):
         G = {key: set() for key in SENSE}
         for key, values in SENSE.items():
             for value in values:
-                val = 'sense-'+value
+                val = 's:'+value
                 if not val in G:
                     G[val] = set()
                 G[key].add(val)
                 G[val].add(key)
-        #G = nx.Graph()
-        #for key, values in SENSE.items():
-        #    G.add_node(key, type=1)
-        #    for value in values:
-        #        if not 'sense-'+value in G:
-        #            G.add_node('sense-'+value, type=2)
-        #        G.add_edge(key, 'sense-'+value)
-                
-        # make a fuzzy lookup
         L = defaultdict(list)
         for key in SENSE:
             L[key] += [key]
@@ -77,4 +68,4 @@ class Sense(object):
                     out += [[key, k, '; '.join(v), len(v)]]
         return out[:maxitems]
 
-
+    

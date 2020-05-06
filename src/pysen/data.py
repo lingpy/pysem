@@ -5,8 +5,8 @@ import networkx as nx
 def data_path(*path):
     return Path(__file__).parent.joinpath('data', *path)
 
-with UnicodeDictReader(data_path('sense.tsv'), delimiter="\t") as reader:
+with UnicodeDictReader(data_path('sense.csv'), delimiter=",") as reader:
     SENSE = {}
     for row in reader:
-        SENSE[row['GLOSS']] = frozenset(row['SENSES'].split(';'))
+        SENSE[row['HEADWORD']] = frozenset(row['ITEMS'].split(';')[:-1])
 
