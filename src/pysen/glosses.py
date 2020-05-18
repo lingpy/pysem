@@ -7,12 +7,38 @@ from collections import defaultdict
 from clldutils.misc import lazyproperty
 import attr
 
-__all__ = ['parse_gloss', 'Gloss', 'concept_map']
+__all__ = ['parse_gloss', 'Gloss', 'to_concepticon']
 
 MAPPINGS = get_Concepticon()
 
 @attr.s
 class Gloss(object):
+    """
+    Basic object for handling elicitation glosses.
+
+    Notes
+    -----
+    The gloss is usually parsed, not instantiated. When parsing a gloss with
+    `Gloss.from_string`, the parsing process will cut the gloss automatically
+    into its constituents:
+
+    - `main`: the main part of the gloss, in which brackets are excluded, but
+      space-segmented multi-word expressions are preserved
+    - `pos`: the part-of-speech information can be provided when instantiating
+      a gloss, but if it is not (yet) available, the information will be
+      inferred from the gloss itself, by checking for the presence of articles,
+      or infinitive markers (depending on the language under question)
+    - `parts`: a gloss like "body hair" will be split into two parts, "body"
+      and "hair" (but its main part will remain "body hair").
+    - `gloss`: the gloss refers not to the original string passed to the
+      `Gloss.from_string` command, but to the largest part in glosses with
+      ambiguous meaning, such as the very common "arm/hand". In these cases,
+      the `parse_gloss` command will yield two glosses, one with "arm" as
+      gloss, and one with "hand" as gloss, but both with the same `text`
+      attribute.
+    - `text`: the original string from which a gloss was parsed.
+    
+    """
     main = attr.ib(default='')
     # the start character indicating a potential comment:
     comment_start = attr.ib(default='')
@@ -35,6 +61,18 @@ class Gloss(object):
     text = attr.ib(default='')
 
     def similarity(self, other, weights=(5, 4, 1, 3, 2)):
+        """
+        Compute similarity between glosses.
+
+        Notes
+        -----
+        Similarity is provided on a scale from 20 to 0. The highest similarity
+        is achieved, if the `text`, the original string, is identical, and
+        part-of-speech information is provided. A similarity of 10 indicates
+        that the `main` part of the gloss is similar and the part-of-speech as
+        well, and 9 indicates that part-of-speech information is missing or
+        different. 
+        """
         similarities = []
         pos = self.pos == other.pos
         if self.text == other.text:
