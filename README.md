@@ -1,6 +1,6 @@
 # PySen: Pysen library for handling semantic data in linguistics
  
-## Example
+## Usage Examples
 
 Retrieve the sense data assembled by S. A. Starostin in the STARLING software package and search for similar words:
 
@@ -15,4 +15,10 @@ Retrieve the sense data assembled by S. A. Starostin in the STARLING software pa
  ['arm', 'bone', 'sense-bone; sense-foot', 2]]
 ```
 
+Map data to the most recent version of the [Concepticon](https://concepticon.clld.org) project:
 
+```python
+>>> from pysen import to_concepticon
+>>> to_concepticon([{"gloss": "Fuß", pos: "noun"}], language="de"}])
+{'Fuß': [['1301', 'FOOT', 'noun', 19]]}
+```

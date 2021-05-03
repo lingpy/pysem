@@ -8,14 +8,19 @@ Releasing linse
   ```
 
 - Make sure statement coverage >= 99%
-- Make sure flake8 passes:
-  ```shell script
-  flake8 src
+- Use black to make the code unified:
+  ```
+  black src/pysen/*.py
+  ```
+
+- Dump latest version of concepticon to the repo:
+  ```
+  concepticon --repos-version=vLATEST dump --destination=src/pysen/data/concepticon.zip
   ```
 
 - Update the version number, by removing the trailing `.dev0` in:
   - `setup.py`
-  - `src/linse/__init__.py`
+  - `src/pysen/__init__.py`
 
 - Create the release commit:
   ```shell script

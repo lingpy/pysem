@@ -52,3 +52,4 @@ def test_Gloss():
         {'gloss': 'HAND'}], language='de')
     with pytest.raises(ValueError):
         to_concepticon([{'gls': 'Hand'}])
+
