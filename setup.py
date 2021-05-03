@@ -29,7 +29,7 @@ setup(
     python_requires='>=3.5',
     install_requires=[
         'clldutils>=3.5',
-        "attr>=20.3.0"
+        "attrs>=20"
     ],
     extras_require={
         'dev': ['black', 'wheel', 'twine'],
