@@ -60,7 +60,7 @@ class Gloss(object):
     gloss = attr.ib(default='')
     text = attr.ib(default='')
 
-    def similarity(self, other, weights=(5, 4, 1, 3, 2)):
+    def similarity(self, other):
         """
         Compute similarity between glosses.
 
@@ -299,12 +299,14 @@ def to_concepticon(
                     candidates += [(g.main.lower(), g)]
             results = []
             for text, g in candidates:
+                
                 for row in mappings[language][text]:
                     results += [(
                         row[0], row[1], row[2], row[3], g.similarity(
                             Gloss.from_string(text, pos=row[3])))]
+
             results = sorted(
-                    results, 
+                    set(results), 
                     key=lambda x: (
                         x[-1],
                         1 if g.pos == x[-2] else 0, 
