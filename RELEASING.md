@@ -10,17 +10,17 @@ Releasing linse
 - Make sure statement coverage >= 99%
 - Use black to make the code unified:
   ```
-  black src/pysen/*.py
+  black src/pysem/*.py
   ```
 
 - Dump latest version of concepticon to the repo:
   ```
-  concepticon --repos-version=vLATEST dump --destination=src/pysen/data/concepticon.zip
+  concepticon --repos-version=vLATEST dump --destination=src/pysem/data/concepticon.zip
   ```
 
 - Update the version number, by removing the trailing `.dev0` in:
   - `setup.py`
-  - `src/pysen/__init__.py`
+  - `src/pysem/__init__.py`
 
 - Create the release commit:
   ```shell script
@@ -50,7 +50,7 @@ Releasing linse
 
 - Change version for the next release cycle, i.e. incrementing and adding .dev0
   - `setup.py`
-  - `src/pysen/__init__.py`
+  - `src/pysem/__init__.py`
 
 - Commit/push the version change:
   ```shell script
