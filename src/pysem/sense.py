@@ -2,7 +2,7 @@
 Sense manipulations following the framework of the STARLING package.
 """
 # import networkx as nx
-from pysen.data import SENSE
+from pysem.data import SENSE
 from collections import defaultdict
 
 

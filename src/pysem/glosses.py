@@ -1,7 +1,7 @@
 """
 Mapping algorithms for linking elicitation glosses to Concepticon.
 """
-from pysen.data import get_Concepticon
+from pysem.data import get_Concepticon
 import re
 from collections import defaultdict
 from clldutils.misc import lazyproperty

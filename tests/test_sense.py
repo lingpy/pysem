@@ -1,5 +1,5 @@
 import pytest
-from pysen.sense import Sense
+from pysem.sense import Sense
 
 
 def test_sense():

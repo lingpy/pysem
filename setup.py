@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 
 setup(
-    name='pysen',
-    version='0.1.0',
+    name='pysem',
+    version='0.3.0',
     license='MIT',
     description='Python library for manipulating semantic data in linguistics',
     long_description=open('README.md').read(),
@@ -19,7 +19,7 @@ setup(
     ],
     author='Johann-Mattis List',
     author_email='list@shh.mpg.de',
-    url='https://github.com/lingpy/pysen',
+    url='https://github.com/lingpy/pysem',
     keywords='data',
     packages=find_packages(where='src'),
     package_dir={'': 'src'},

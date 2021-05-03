@@ -1,5 +1,5 @@
 import pytest
-from pysen.glosses import Gloss, to_concepticon
+from pysem.glosses import Gloss, to_concepticon
 
 def test_Gloss():
     gl1 = Gloss.from_string('the bag shower', language='en')
