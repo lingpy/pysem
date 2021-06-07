@@ -110,7 +110,7 @@ class Gloss(object):
         pos="",
         language="en",
         splitter=",|;|:|/| or | OR ",
-        marker='?!"¨:;,»«´“”*+-',
+        marker='?!"¨:;,»«´“”*+',
         brackets_open="([{（<",
         brackets_close=")]}）>",
     ):
@@ -130,7 +130,7 @@ def parse_gloss(
     pos="",
     language="en",
     splitter=",|;|:|/| or | OR ",
-    marker='?!"¨:;,»«´“”*+-',
+    marker='?!"¨:;,»«´“”*+',
     brackets_open="([{（<",
     brackets_close=")]}）>",
 ):
