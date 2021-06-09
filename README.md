@@ -22,3 +22,7 @@ Map data to the most recent version of the [Concepticon](https://concepticon.cll
 >>> to_concepticon([{"gloss": "Fuß", pos: "noun"}], language="de"}])
 {'Fuß': [['1301', 'FOOT', 'noun', 19]]}
 ```
+
+## How to Cite
+
+> List, Johann-Mattis (2021): PySeM. A Python library for handling semantic data in linguistics. Version 0.4.0 URL: https://github.com/lingpy/pysem/, Leipzig: Max Planck Institute for Evolutionary Anthropology.

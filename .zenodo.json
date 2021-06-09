@@ -1,17 +1,17 @@
 {
-    "title": "PySen. A Python library for handling semantic data in linguistics",
+    "title": "PySem. A Python library for handling semantic data in linguistics",
     "creators": [
         {
             "name": "Johann-Mattis List"
         }    ],
-    "description": "<p>Cite the library as:</p>\n\n<blockquote>\n<p>List, Johann-Mattis (2020): PySen. A Python library for handling semantic data in linguistics. Version 0.0.0 URL: https://github.com/lingpy/pysen/, Jena: Max Planck Institute for the Science of Human History.</p>\n</blockquote>",
+    "description": "<p>Cite the library as:</p>\n\n<blockquote>\n<p>List, Johann-Mattis (2021): PySeM. A Python library for handling semantic data in linguistics. Version 0.4.0 URL: https://github.com/lingpy/pysem/, Leipzig: Max Planck Institute for Evolutionary Anthropology.</p>\n</blockquote>",
     "access_right": "open",
     "keywords": [
         "linguistics",
         "cldf:Wordlist"
     ],
     "license": {
-        "id": "CC-BY-NC-4.0"
+        "id": "CC-BY-4.0"
     },
     "contributors": [
         {
