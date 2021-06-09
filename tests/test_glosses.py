@@ -36,6 +36,7 @@ def test_Gloss():
         gl = Gloss.from_string('')
     gl = Gloss.from_string('hand or arm', pos='noun')
     assert gl.similarity(gl) == 20
+    
     for gloss in [
             ('hand or arm', 'verb', 19),
             ('HAND or ARM', 'noun', 18),
@@ -52,4 +53,15 @@ def test_Gloss():
         {'gloss': 'HAND'}], language='de')
     with pytest.raises(ValueError):
         to_concepticon([{'gls': 'Hand'}])
+
+    mappings = to_concepticon([
+        {"gloss": "arm or hand", "pos": "noun"}], pos_ref="pos")
+    assert mappings["arm or hand"][0][-1] == 20
+
+    mappings = to_concepticon([
+        {"gloss": "brother-in-law", "pos": "noun"}], pos_ref="noun")
+    assert mappings["brother-in-law"][0][-1] == 19
+
+
+
 
