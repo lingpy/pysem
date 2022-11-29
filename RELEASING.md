@@ -1,5 +1,5 @@
 
-Releasing linse
+Releasing pysem
 ===============
 
 - Do platform test via tox:
