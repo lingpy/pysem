@@ -21,6 +21,11 @@ Releasing pysem
 - Update the version number, by removing the trailing `.dev0` in:
   - `setup.py`
   - `src/pysem/__init__.py`
+  - `README.md` (in citation)
+
+- Update information on Concepticon version in:
+  - `src/glosses.py` (`to_concepticon` function)
+  - `README.md` (right on top)
 
 - Create the release commit:
   ```shell script
