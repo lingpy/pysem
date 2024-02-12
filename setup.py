@@ -29,6 +29,7 @@ setup(
     python_requires='>=3.5',
     install_requires=[
         'clldutils>=3.5',
+        'csvw',
         "attrs>=20"
     ],
     extras_require={
