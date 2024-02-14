@@ -342,7 +342,7 @@ def to_concepticon(
             # don't guarantee a stable element order.
             results = sorted(
                 {row: True for row in results},
-                key=lambda x: (x[-1], 1 if g.pos == x[-2] else 0, x[-3]),
+                key=lambda x: (x[-1], 1 if pos == x[-2] else 0, x[-3]),
                 reverse=True,
             )[:max_matches]
             matches[gloss] = []
