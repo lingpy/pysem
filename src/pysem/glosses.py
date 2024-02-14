@@ -338,9 +338,11 @@ def to_concepticon(
                         )
                     ]
 
+            # using a dictionary (key -> True) instead of a set because sets
+            # don't guarantee a stable element order.
             results = sorted(
-                set(results),
-                key=lambda x: (x[-1], 1 if g.pos == x[-2] else 0, x[-3]),
+                {row: True for row in results},
+                key=lambda x: (x[-1], 1 if pos == x[-2] else 0, x[-3]),
                 reverse=True,
             )[:max_matches]
             matches[gloss] = []
