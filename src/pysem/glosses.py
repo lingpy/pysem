@@ -288,7 +288,7 @@ def to_concepticon(
     mappings=MAPPINGS,
 ):
     """
-    Map a given concept list to Concepticon (Version 3.1.0).
+    Map a given concept list to Concepticon (Version 3.2.0).
     """
     matches = {}
     for concept in concepts:

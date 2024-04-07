@@ -1,7 +1,7 @@
 # PySem: Pysen library for handling semantic data in linguistics
 
-* **Current Version**: 0.7
-* **Concepticon Version**: [3.1.0](https://doi.org/10.5281/zenodo.7777629)
+* **Current Version**: 0.8
+* **Concepticon Version**: [3.2.0](https://doi.org/10.5281/zenodo.7298022)
  
 ## Usage Examples
 
@@ -28,4 +28,4 @@ Map data to the most recent version of the [Concepticon](https://concepticon.cll
 
 ## How to Cite
 
-> List, Johann-Mattis (2023): PySeM. A Python library for handling semantic data in linguistics. Version 0.7 URL: https://github.com/lingpy/pysem/, Leipzig: Max Planck Institute for Evolutionary Anthropology.
+> List, Johann-Mattis (2024): PySeM. A Python library for handling semantic data in linguistics [Software, Version 0.8]. With contributions by Johannes Englisch. URL: https://pypi.org/project/pysem, Passau: MCL Chair at the University of Passau.

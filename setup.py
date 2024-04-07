@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='pysem',
-    version='0.7.dev0',
+    version='0.8',
     license='MIT',
     description='Python library for manipulating semantic data in linguistics',
     long_description=open('README.md').read(),
@@ -18,7 +18,7 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     author='Johann-Mattis List',
-    author_email='list@shh.mpg.de',
+    author_email='mattis.list@uni-passau.de',
     url='https://github.com/lingpy/pysem',
     keywords='data',
     packages=find_packages(where='src'),
