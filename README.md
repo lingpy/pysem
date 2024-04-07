@@ -1,6 +1,6 @@
 # PySem: Pysen library for handling semantic data in linguistics
 
-* **Current Version**: 0.8
+* **Current Version**: 0.9.dev0
 * **Concepticon Version**: [3.2.0](https://doi.org/10.5281/zenodo.7298022)
  
 ## Usage Examples
