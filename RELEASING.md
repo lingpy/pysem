@@ -19,7 +19,7 @@ Releasing pysem
   ```
 
 - Update the version number, by removing the trailing `.dev0` in:
-  - `setup.py`
+  - `setup.cfg`
   - `src/pysem/__init__.py`
   - `README.md` (in citation)
 
@@ -40,10 +40,7 @@ Releasing pysem
 - Release to PyPI (see https://github.com/di/markdown-description-example/issues/1#issuecomment-374474296):
   ```shell script
   rm dist/*
-  python setup.py sdist
-  twine upload dist/*
-  rm dist/*
-  python setup.py bdist_wheel
+  python -m build -n
   twine upload dist/*
   ```
 
@@ -54,7 +51,7 @@ Releasing pysem
   ```
 
 - Change version for the next release cycle, i.e. incrementing and adding .dev0
-  - `setup.py`
+  - `setup.cfg`
   - `src/pysem/__init__.py`
 
 - Commit/push the version change:
