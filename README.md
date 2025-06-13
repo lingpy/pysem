@@ -28,4 +28,4 @@ Map data to the most recent version of the [Concepticon](https://concepticon.cll
 
 ## How to Cite
 
-> List, Johann-Mattis (2025): PySeM. A Python library for handling semantic data in linguistics [Software, Version 1.1]. With contributions by Johannes Englisch. URL: https://pypi.org/project/pysem, Passau: MCL Chair at the University of Passau.
+> List, Johann-Mattis (2025): PySeM. A Python library for handling semantic data in linguistics [Software, Version 1.2.1]. With contributions by Johannes Englisch. URL: https://pypi.org/project/pysem, Passau: MCL Chair at the University of Passau.
