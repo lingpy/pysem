@@ -1,3 +1,3 @@
-__version__ = "0.9.dev0"
+__version__ = "1.1"
 from pysem.glosses import to_concepticon
 from pysem.sense import Sense
