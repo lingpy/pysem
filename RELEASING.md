@@ -28,7 +28,7 @@ Releasing pysem
   - `README.md` (in citation)
 
 - Update information on Concepticon version in:
-  - `src/glosses.py` (`to_concepticon` function)
+  - `src/pysem/glosses.py` (`to_concepticon` function)
   - `README.md` (right on top)
 
 - Create the release commit:
