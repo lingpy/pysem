@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pysem"
-version = "1.2.1"
+version = "1.2.2"
 description = "PySem: Python library for handling semantic data in linguistics"
 keywords = [ "linguistics", "semantic data", "computational linguistics", "Concepticon",]
 classifiers = [ "Development Status :: 5 - Production/Stable", "Intended Audience :: Developers", "Intended Audience :: Science/Research", "Natural Language :: English", "Operating System :: OS Independent", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Programming Language :: Python :: 3.13", "Programming Language :: Python :: Implementation :: CPython", "Programming Language :: Python :: Implementation :: PyPy", "License :: OSI Approved :: GNU General Public License v3 (GPLv3)"]
 requires-python = ">=3.10"
-dependencies = ["clldutils", "attr", "csvw",]
+dependencies = ["clldutils<4.0", "attr", "csvw",]
 authors = [
   {name = "Johann-Mattis List", email = "mattis.list@uni-passau.de"},
 ]
@@ -72,10 +72,14 @@ source = [ "edictor", "tests",]
 show_missing = true
 skip_covered = true
 
-[tool.tox.tox]
-envlist = "py38, py39, py310, py311, py312"
+[tool.tox]
+env_list = ["py310", "py311", "py312", "py313", "py314"]
 isolated_build = "true"
 skip_missing_interpreter = "true"
+
+[tool.tox.env_run_base]
+deps = [".[test]"]
+commands = [["pytest", "--no-cov"]]
 
 [tool.setuptools.packages.find]
 where = [ "src",]
