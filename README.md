@@ -1,7 +1,9 @@
 # PySem: Pysen library for handling semantic data in linguistics
 
-* **Current Version**: 1.3.0
-* **Concepticon Version**: [3.4.0](https://doi.org/10.5281/zenodo.14923561)
+[![Build Status](https://github.com/lingpy/pysem/workflows/tests/badge.svg)](https://github.com/lingpy/pysem/actions?query=workflow%3Atests)
+[![PyPI](https://img.shields.io/pypi/v/pysem.svg)](https://pypi.org/project/pysem)
+
+Included **Concepticon Version**: [3.4.0](https://doi.org/10.5281/zenodo.14923561)
  
 ## Usage Examples
 
