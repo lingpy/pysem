@@ -7,6 +7,11 @@ Releasing pysem
   pytest
   ```
 
+- Make sure pylint passes with a score of 10:
+  ```shell
+  pylint src/
+  ```
+
 - Do platform test via tox:
   ```shell
   tox -r
@@ -36,7 +41,7 @@ Releasing pysem
   git tag -a v<VERSION> -m"<VERSION> release"
   ```
 
-- Release to PyPI (see https://github.com/di/markdown-description-example/issues/1#issuecomment-374474296):
+- Release to PyPI:
   ```shell script
   rm dist/*
   python -m build -n
@@ -50,7 +55,7 @@ Releasing pysem
   ```
 
 - Change version for the next release cycle, i.e. incrementing and adding .dev0
-  - `setup.cfg`
+  - `pyproject.toml`
   - `src/pysem/__init__.py`
 
 - Commit/push the version change:
