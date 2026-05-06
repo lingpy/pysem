@@ -1,53 +1,86 @@
 import pytest
-from pysem.glosses import Gloss, to_concepticon
 
-def test_Gloss():
-    gl1 = Gloss.from_string('the bag shower', language='en')
-    gl2 = Gloss.from_string('bag shower (noun)', language='en')
-    gl3 = Gloss.from_string('bag shower (verb)', language='en')
-    gl4 = Gloss.from_string('the BAG SHOWER?', pos='noun', language='en')
-    gl5 = Gloss.from_string('BAG SHOWER', pos='verb', language='it')
-    gl6 = Gloss.from_string('in shower bag', pos='noun', language='en')
-    gl7 = Gloss.from_string('shower bag (verb)', language='en')
-    gl8 = Gloss.from_string('shower BAG (noun)', language='en')
-    gl9 = Gloss.from_string('shower Bag (verb)', language='en')
-    gl10 = Gloss.from_string('the bag', language='en')
-    gl11 = Gloss.from_string('to bag', language='en')
-    gl12 = Gloss.from_string('le BaG', language='fr')
-    gl13 = Gloss.from_string('to baG', language='en')
-    gl14 = Gloss.from_string('der something', language='de')
-    gl14 = Gloss.from_string('arm or hand')
+from pysem.glosses import Gloss, to_concepticon, parse_gloss, ParseSpec, Matcher
 
 
-    assert gl1.similarity(gl2) == 12
-    assert gl1.similarity(gl3) == 11
-    assert gl1.similarity(gl4) == 10
-    assert gl1.similarity(gl5) == 9
-    assert gl1.similarity(gl6) == 8
-    assert gl1.similarity(gl7) == 7
-    assert gl1.similarity(gl8) == 6
-    assert gl1.similarity(gl9) == 5
-    assert gl1.similarity(gl10) == 4
-    assert gl1.similarity(gl11) == 3
-    assert gl1.similarity(gl12) == 2
-    assert gl1.similarity(gl13) == 1
-    assert gl1.similarity(gl14) == 0
+@pytest.mark.parametrize(
+    'string,separator,constituents',
+    [
+        ('a', None, ['a']),
+        ('a;b', None, ['a', 'b', 'a / b']),
+        ('a+b', '+', ['a', 'b', 'a / b']),
+        ('a+b', '-|+', ['a', 'b', 'a / b']),
+    ]
+)
+def test_ParseSpec_split_constituents(string, separator, constituents):
+    spec = ParseSpec.for_language(separator=separator)
+    assert spec.split_constituents(string) == constituents
+
+
+@pytest.mark.parametrize(
+    'string,assertion',
+    [
+        ('word', lambda g: g.main == 'word'),
+        ('word; other', lambda g: g.main == 'word'),
+        ('(word)', lambda g: g.comment == 'word'),
+        ('(word)[other]', lambda g: g.comment == 'wordother'),
+        ('(word]', lambda g: g.comment == 'word'),
+        ('the town', lambda g: g.pos == 'noun' and g.main == 'town'),
+        ('in town', lambda g: g.prefix == 'in' and g.main == 'town'),
+    ]
+)
+def test_gloss_comments(string, assertion):
+    g = parse_gloss(string)[0]
+    assert assertion(g)
+
+
+@pytest.mark.parametrize(
+    'gloss,kw,similarity',
+    [
+        ('bag shower (noun)', dict(language='en'), 12),
+        ('bag shower (verb)', dict(language='en'), 11),
+        ('the BAG SHOWER?', dict(pos='noun', language='en'), 10),
+        ('BAG SHOWER', dict(pos='verb', language='it'), 9),
+        ('in shower bag', dict(pos='noun', language='en'), 8),
+        ('shower bag (verb)', {}, 7),
+        ('shower BAG (noun)', {}, 6),
+        ('shower Bag (verb)', {}, 5),
+        ('the bag', {}, 4),
+        ('to bag', dict(language='en'), 3),
+        ('le BaG', dict(language='fr'), 2),
+        ('to baG', dict(language='en'), 1),
+        ('arm or hand', {}, 0),
+    ]
+)
+def test_similarity1(gloss, kw, similarity):
+    gl = Gloss.from_string('the bag shower', pos='noun')
+    assert gl.similarity(Gloss.from_string(gloss, **kw)) == similarity
+
+
+def test_invalid_gloss():
     with pytest.raises(ValueError):
-        gl = Gloss.from_string('')
-    gl = Gloss.from_string('hand or arm', pos='noun')
-    assert gl.similarity(gl) == 20
-    
-    for gloss in [
-            ('hand or arm', 'verb', 19),
-            ('HAND or ARM', 'noun', 18),
-            ('HAND or arm', 'verb', 17),
-            ('hand', 'noun', 16),
-            ('hand', 'verb', 15),
-            ('HAND', 'noun', 14),
-            ('HAND', 'verb', 13),
-            ]:
-        assert gl.similarity(Gloss.from_string(gloss[0], pos=gloss[1])) == gloss[2]
+        _ = Gloss.from_string('')
 
+
+@pytest.mark.parametrize(
+    'gloss,pos,similarity',
+    [
+        ('hand or arm', 'noun', 20),
+        ('hand or arm', 'verb', 19),
+        ('HAND or ARM', 'noun', 18),
+        ('HAND or arm', 'verb', 17),
+        ('hand', 'noun', 16),
+        ('hand', 'verb', 15),
+        ('HAND', 'noun', 14),
+        ('HAND', 'verb', 13),
+    ]
+)
+def test_similarity2(gloss, pos, similarity):
+    gl = Gloss.from_string('hand or arm', pos='noun')
+    assert gl.similarity(Gloss.from_string(gloss, pos=pos)) == similarity
+
+
+def test_to_concepticon():
     to_concepticon([
         {'gloss': 'hand'},
         {'gloss': 'HAND'}], language='de')
@@ -63,5 +96,8 @@ def test_Gloss():
     assert mappings["brother-in-law"][0][-1] == 19
 
 
-
-
+def test_Matcher():
+    matcher = Matcher()
+    res = matcher.match('foot', '', max_matches=10)
+    assert len(res) == 2
+    assert res[0].frequency > res[1].frequency

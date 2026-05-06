@@ -1,9 +1,7 @@
-import pytest
 from pysem.sense import Sense
 
 
 def test_sense():
-
     sense = Sense()
     assert len([node for node in sense.G if not node.startswith("s:")]) == 7048
     assert len([node for node in sense.G if node.startswith("s:")]) == 424
