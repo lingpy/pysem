@@ -1,4 +1,4 @@
-# PySem: Pysen library for handling semantic data in linguistics
+# PySem: A library for handling semantic data in linguistics
 
 [![Build Status](https://github.com/lingpy/pysem/workflows/tests/badge.svg)](https://github.com/lingpy/pysem/actions?query=workflow%3Atests)
 [![PyPI](https://img.shields.io/pypi/v/pysem.svg)](https://pypi.org/project/pysem)
